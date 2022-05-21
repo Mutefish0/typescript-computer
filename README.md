@@ -1,6 +1,13 @@
 # typescript-computer
 
-Computations with typescrip types
+Computations with typescrip types  🪄
+
+<img width="527" alt="截屏2022-05-21 下午10 03 54" src="https://user-images.githubusercontent.com/15227926/169655241-95984c37-b0eb-4739-97be-7a1815af8b54.png">
+
+<img width="814" alt="截屏2022-05-21 下午10 03 04" src="https://user-images.githubusercontent.com/15227926/169655253-2de6e16a-aa99-49d6-82d9-e2ccf8d8157c.png">
+
+<img width="849" alt="截屏2022-05-21 下午10 03 25" src="https://user-images.githubusercontent.com/15227926/169655263-b74fc6b7-fd25-41d0-afa0-269bbf72e06f.png">
+
 
 ## Math
 
