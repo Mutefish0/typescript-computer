@@ -35,7 +35,7 @@ type _NArrayNumber<L extends number> = _NArray<number, L>;
 type $CastType<X, Y, Default extends Y> = X extends Y ? X : Default;
 
 // 遍历数组
-type _ArrayStuct<T, Head extends T, Tail extends T[]> = [Head, ...Tail];
+type $ArrayStuct<T, Head extends T, Tail extends T[]> = [Head, ...Tail];
 
 type $Bool = 1 | 0; // True & False
 
@@ -74,9 +74,9 @@ type $Join<
   Result extends string = ""
 > = Arr extends []
   ? Result
-  : Arr extends _ArrayStuct<Arr[0], infer Word, []>
+  : Arr extends $ArrayStuct<Arr[0], infer Word, []>
   ? `${Result}${Word}`
-  : Arr extends _ArrayStuct<Arr[0], infer Word, infer Tail>
+  : Arr extends $ArrayStuct<Arr[0], infer Word, infer Tail>
   ? $Join<Tail, Sp, `${Result}${Word}${Sp}`>
   : never;
 
@@ -227,9 +227,14 @@ type $Subtract<
   Y1 extends $Number = Y extends $Number ? Y : $$Number<$CastType<Y, number, 0>>
 > = $Add<X1, $ReverseSign<Y1>>;
 
-type $EQ<X extends $Number, Y extends $Number> = X["value"] extends Y["value"]
-  ? 1
-  : 0;
+type $EQ<
+  X extends $Number | number,
+  Y extends $Number | number,
+  X1 extends $Number = X extends $Number
+    ? X
+    : $$Number<$CastType<X, number, 0>>,
+  Y1 extends $Number = Y extends $Number ? Y : $$Number<$CastType<Y, number, 0>>
+> = X1["value"] extends Y1["value"] ? 1 : 0;
 
 type $GT<
   X extends $Number | number,
@@ -248,6 +253,20 @@ type $LT<
     : $$Number<$CastType<X, number, 0>>,
   Y1 extends $Number = Y extends $Number ? Y : $$Number<$CastType<Y, number, 0>>
 > = $LTZ<$CastType<$Subtract<X1, Y1>, $Number, $$Number<0>>>;
+
+type $Max<X extends $Number | number, Y extends $Number | number> = $LT<
+  X,
+  Y
+> extends 1
+  ? Y
+  : X;
+
+type $Min<X extends $Number | number, Y extends $Number | number> = $LT<
+  X,
+  Y
+> extends 1
+  ? X
+  : Y;
 
 // 乘法
 type $Multiply<
