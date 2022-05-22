@@ -1,6 +1,9 @@
 # typescript-computer
 
 Computations with typescrip types 🪄
+<img width="706" alt="截屏2022-05-23 上午1 28 02" src="https://user-images.githubusercontent.com/15227926/169707800-5812ba91-4f97-4a41-9b78-7d3fd77a61eb.png">
+
+
 
 // Type convert
 
