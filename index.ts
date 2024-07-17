@@ -54,3 +54,5 @@ type R3 = ReduceSum<3>; // 1 + 2 + 3  = 5
 type R4 = ReduceSum<4>; // 1 + 2 + 3 +  5 = 10
 type R13 = ReduceSum<12>; // 78
 type Calc13 = $Divide<$Multiply<$Add<1, 12>, 12>, 2>["value"]; // (x + 1) * x / 2 = 78
+
+// Todo，不支持传递高阶范形，通过指令实现，设计寄存器系统，指令系统，寻址系统
