@@ -198,8 +198,9 @@ type $EQZ<
   X extends $Number | number,
   X1 extends $Number = X extends $Number ? X : $$Number<$CastType<X, number, 0>>
 > = X1["value"] extends 0 ? 1 : 0;
-type $GTZ<X extends $Number> = $NOT<X["sign"]>;
-type $LTZ<X extends $Number> = X["sign"];
+
+type $GTZ<X extends $Number> = X extends $$Number<0> ? 0 : $NOT<X["sign"]>;
+type $LTZ<X extends $Number> = X extends $$Number<0> ? 0 : X["sign"];
 
 // 加法
 type $Add<

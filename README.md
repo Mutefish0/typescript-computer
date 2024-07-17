@@ -2,14 +2,17 @@
 
 Computations with typescrip types 🪄
 
-// Type convert
+<img width="706" alt="截屏2022-05-23 上午1 28 02" src="https://user-images.githubusercontent.com/15227926/169707800-5812ba91-4f97-4a41-9b78-7d3fd77a61eb.png">
+
+
+## Type Conversion
 
 ```ts
 type DEMO0 = $$Number<"8">["value"]; // 8
 type DEMO00 = $$Number<8>["print"]; // "8"
 ```
 
-// Math
+## Math
 
 ```ts
 type DEMO1 = $Add<3, 4>["print"]; // 7
@@ -19,7 +22,7 @@ type DEMO4 = $Multiply<4, 8>["print"]; // 32
 type DEMO6 = $Divide<24, 3>["print"]; // 8
 ```
 
-// Logical
+## Logical
 
 ```ts
 type DEMO_4_gt_5 = $GT<4, 5>; // 0
@@ -33,10 +36,9 @@ type DEMO_and = $AND<DEMO_0_eq_0, DEMO_1_eq_0>; // 0
 type DEMO_or = $OR<DEMO_0_eq_0, DEMO_1_eq_0>; // 1
 ```
 
-// Functions
+## Functions
 
-// fibonacci
-
+### Fibonacci
 ```ts
 type Fibonacci<
   I extends number,
@@ -57,7 +59,7 @@ type Fibonacci<
 type F0 = Fibonacci<10>; // 1, 1, 2, 3, 5, 8, 13, 21, 34, 55
 ```
 
-// reduceSum
+### ReduceSum
 
 ```ts
 type ReduceSum<
