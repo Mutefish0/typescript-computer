@@ -1,4 +1,4 @@
-type _MAX_NUMBER = 200;
+type _MAX_NUMBER = 512;
 type _Index_Max_Number_Array = _NArrayNumber<_MAX_NUMBER>;
 type _Index_Max_Number = _Index_Max_Number_Array[number];
 type _Index_Max_Number_String_Pos = `${_Index_Max_Number}`;
@@ -80,7 +80,11 @@ type $Join<
   ? $Join<Tail, Sp, `${Result}${Word}${Sp}`>
   : never;
 
-type $Error<Op extends string, Args extends unknown[], Msg extends string> = {
+export type $Error<
+  Op extends string,
+  Args extends unknown[],
+  Msg extends string
+> = {
   op: `${Op}<${$Join<Args, ", ">}>`;
   error: `${Op}<${$Join<Args, ", ">}>: ${Msg}`;
 };
@@ -115,7 +119,7 @@ type $SetSign<X extends $Number, S extends $Bool> = {
   print: $IFELSE<S, `-${X["value"]}`, `${X["value"]}`>;
 };
 
-type $Abs<X extends $Number> = $SetSign<X, 0>;
+export type $Abs<X extends $Number> = $SetSign<X, 0>;
 
 type _Number<T extends string> = T extends _Index_Max_Number_String_Pos
   ? {
@@ -137,6 +141,11 @@ type $$Number<T extends number | string> = T extends string
   : T extends number
   ? _Number<`${T}`>
   : $$Number<0>;
+
+export type $ParseInt<
+  T extends string,
+  R extends number = $$Number<T>["value"]
+> = R extends number ? R : never;
 
 type __SubtractPos<
   X extends _Index_Max_Number,
@@ -203,7 +212,7 @@ type $GTZ<X extends $Number> = X extends $$Number<0> ? 0 : $NOT<X["sign"]>;
 type $LTZ<X extends $Number> = X extends $$Number<0> ? 0 : X["sign"];
 
 // 加法
-type $Add<
+export type $Add<
   X extends $Number | number,
   Y extends $Number | number,
   X1 extends $Number = X extends $Number
@@ -219,7 +228,7 @@ type $Add<
   : $$Number<0>;
 
 // 减法
-type $Subtract<
+export type $Subtract<
   X extends $Number | number,
   Y extends $Number | number,
   X1 extends $Number = X extends $Number
@@ -228,7 +237,7 @@ type $Subtract<
   Y1 extends $Number = Y extends $Number ? Y : $$Number<$CastType<Y, number, 0>>
 > = $Add<X1, $ReverseSign<Y1>>;
 
-type $EQ<
+export type $EQ<
   X extends $Number | number,
   Y extends $Number | number,
   X1 extends $Number = X extends $Number
@@ -237,7 +246,7 @@ type $EQ<
   Y1 extends $Number = Y extends $Number ? Y : $$Number<$CastType<Y, number, 0>>
 > = X1["value"] extends Y1["value"] ? 1 : 0;
 
-type $GT<
+export type $GT<
   X extends $Number | number,
   Y extends $Number | number,
   X1 extends $Number = X extends $Number
@@ -246,7 +255,7 @@ type $GT<
   Y1 extends $Number = Y extends $Number ? Y : $$Number<$CastType<Y, number, 0>>
 > = $GTZ<$CastType<$Subtract<X1, Y1>, $Number, $$Number<0>>>;
 
-type $LT<
+export type $LT<
   X extends $Number | number,
   Y extends $Number | number,
   X1 extends $Number = X extends $Number
@@ -255,14 +264,14 @@ type $LT<
   Y1 extends $Number = Y extends $Number ? Y : $$Number<$CastType<Y, number, 0>>
 > = $LTZ<$CastType<$Subtract<X1, Y1>, $Number, $$Number<0>>>;
 
-type $Max<X extends $Number | number, Y extends $Number | number> = $LT<
+export type $Max<X extends $Number | number, Y extends $Number | number> = $LT<
   X,
   Y
 > extends 1
   ? Y
   : X;
 
-type $Min<X extends $Number | number, Y extends $Number | number> = $LT<
+export type $Min<X extends $Number | number, Y extends $Number | number> = $LT<
   X,
   Y
 > extends 1
@@ -270,7 +279,7 @@ type $Min<X extends $Number | number, Y extends $Number | number> = $LT<
   : Y;
 
 // 乘法
-type $Multiply<
+export type $Multiply<
   X extends $Number | number,
   Y extends $Number | number,
   X1 extends $Number = X extends $Number
@@ -287,7 +296,7 @@ type $Multiply<
 >;
 
 // 除法
-type $Divide<
+export type $Divide<
   X extends $Number | number,
   Y extends $Number | number,
   X1 extends $Number = X extends $Number
